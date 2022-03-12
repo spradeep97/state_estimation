@@ -1,1 +1,4 @@
 *.out
+*.catkin_workspace
+devel
+build
