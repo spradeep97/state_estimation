@@ -68,6 +68,31 @@ public:
         m_ctrl_size = ctrl_size;
     }
 
+    /// @brief Ctor
+    /// @param A    A matrix
+    /// @param R    R matrix
+    LinearGaussianSystem(const Eigen::MatrixXd& A, const Eigen::MatrixXd& R)
+    {
+        if (A.rows() != A.cols())
+        {
+            std::cerr << "Error! Attempting to initialize a non-square A matrix!\n";
+            return;
+        }
+
+        std::size_t state_size = A.rows();
+
+        if (R.rows()!= R.cols() || R.rows()!= state_size)
+        {
+            std::cerr << "Error! Attempting to initialize a non compatible R matrix!\n";
+            return;
+        }
+
+        m_A = A;
+        m_R = R;
+        m_state_size = state_size;
+        m_ctrl_size = 0U;   
+    }
+
     /// @brief Mutator
     /// @param val
     /// @{
