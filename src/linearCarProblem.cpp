@@ -1,7 +1,5 @@
 #include <iostream>
-#include "LinearGaussianSystem.hpp"
-#include "LinearMeasurementModel.hpp"
-#include "KalmanFilter.cpp"
+#include "KalmanFilter.hpp"
 
 using Eigen::MatrixXd;
 
