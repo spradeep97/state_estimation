@@ -2,3 +2,5 @@
 *.catkin_workspace
 devel
 build
+*.vscode
+*.cache

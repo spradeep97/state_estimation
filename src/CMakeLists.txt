@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
 project (state_estimation)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
  
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
@@ -24,3 +25,13 @@ target_include_directories(eigen_tutorial PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/kalman_filter"
                           )
+
+# --------Building the filterNoisyVelocity executable-------- #
+add_executable(filterNoisyVelocity filterNoisyVelocity.cpp)
+
+target_link_libraries (filterNoisyVelocity Eigen3::Eigen KalmanFilter)
+
+target_include_directories(filterNoisyVelocity PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           "${PROJECT_SOURCE_DIR}/kalman_filter"                          
+)
