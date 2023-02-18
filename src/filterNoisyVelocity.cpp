@@ -54,7 +54,18 @@ std::tuple<std::vector<double>, std::vector<double>> parse1DTimeseries(std::stri
 
 int main(int argc, char* argv[])
 {
-    std::tuple<std::vector<double>, std::vector<double>> timeseries = parse1DTimeseries("/home/pradeep/pradeep/state_estimation/data/noisy_data.csv");
+    if (argc != 3)
+    {
+        std::cout << "Incorrect number of arguments! Usage : " ;
+        std::cout << argv[0] << " <path to 1d timeseries csv>";
+        std::cout << " <output path>" << std::endl;
+        return 1;
+    }
+
+    std::string filename = argv[1];
+    std::string output_path = argv[2];
+
+    std::tuple<std::vector<double>, std::vector<double>> timeseries = parse1DTimeseries(filename);
     std::cout << "Size of data : " << std::get<0>(timeseries).size() << std::endl;
 
     // Assuming constant dt
@@ -104,7 +115,7 @@ int main(int argc, char* argv[])
 
     std::vector<double> pos_estimate, vel_estimate, acc_estimate;
 
-    std::ofstream out_file("/home/pradeep/pradeep/state_estimation/data/filtered_data.csv");
+    std::ofstream out_file(output_path + "/filtered_data.csv");
 
     std::size_t index = 0;
 
